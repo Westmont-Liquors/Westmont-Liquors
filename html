@@ -1,0 +1,16 @@
+import pandas as pd
+
+# Load the spreadsheet
+file_path = '/mnt/data/ItemList.xlsx'
+spreadsheet = pd.read_excel(file_path)
+
+# Select necessary columns and handle any missing values
+spreadsheet = spreadsheet[['j', 'ITEMNAME', 'SizeName', 'ItemPrice']].fillna('')
+
+# Rename columns for easier handling
+spreadsheet.columns = ['id', 'name', 'size', 'price']
+
+# Convert to dictionary format suitable for JavaScript
+items = spreadsheet.to_dict(orient='records')
+
+items[:5]  # Display the first 5 items for verification
